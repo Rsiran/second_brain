@@ -1,0 +1,13 @@
+{
+  "attachmentFolderPath": "wiki/assets",
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": false,
+  "userIgnoreFilters": [
+    "raw/",
+    "tools/",
+    "examples/",
+    "out/",
+    ".search-index/",
+    ".venv/"
+  ]
+}

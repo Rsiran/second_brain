@@ -1,0 +1,30 @@
+[project]
+name = "kb-tools"
+version = "0.1.0"
+description = "Tools for an LLM-managed knowledge base."
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0",
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.0"]
+dev = [
+    "pytest>=8.0",
+    "mcp>=1.0",
+]
+
+[project.scripts]
+kb-mcp = "tools.mcp_server:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.setuptools.packages.find]
+include = ["tools*"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"

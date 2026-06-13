@@ -1,0 +1,34 @@
+# Query outputs are ephemeral and may be sensitive (see CLAUDE.md §1)
+out/
+!out/.gitkeep
+!examples/mini-base/out/
+
+# Search index is rebuildable
+.search-index/
+
+# Per-user Obsidian workspace state
+.obsidian/workspace*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editor
+.vscode/
+.idea/
+.claude/
+
+# Opt-in block for genuinely sensitive raw/ subpaths. Uncomment individual
+# lines as needed; keep the default open so drop-it-and-go works.
+# raw/specs/private/
+# raw/meetings/private/

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Attention Mechanisms Compared</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; color: #222; line-height: 1.55; }
+    h1 { border-bottom: 2px solid #eee; padding-bottom: 0.3rem; }
+    h2 { color: #1e40af; margin-top: 2rem; }
+    code, pre { background: #f4f4f5; border-radius: 3px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    code { padding: 0.1rem 0.3rem; }
+    pre { padding: 0.75rem; overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem 0.75rem; text-align: left; }
+    th { background: #f4f4f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    figure { margin: 1.25rem 0; }
+    figcaption { color: #666; font-size: 0.9rem; margin-top: 0.4rem; }
+  </style>
+</head>
+<body>
+  <h1>Attention Mechanisms Compared</h1>
+  <p class="meta">Reference output bundle &mdash; query: <em>"How do different attention mechanisms compare in terms of complexity and performance?"</em></p>
+
+  <p>This report compares three attention mechanisms used in transformer architectures: scaled dot-product attention, multi-head attention, and cross-attention.</p>
+
+  <h2>Scaled Dot-Product Attention</h2>
+  <pre>Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) V</pre>
+  <ul>
+    <li><strong>Complexity:</strong> O(n&sup2; &middot; d) where n is sequence length and d is dimension.</li>
+    <li><strong>Parallelizable:</strong> Fully, unlike recurrence.</li>
+  </ul>
+
+  <h2>Multi-Head Attention</h2>
+  <p>Runs h parallel attention heads on d/h-dimensional projections, then concatenates.</p>
+  <ul>
+    <li><strong>Complexity:</strong> Same asymptotic as single-head (O(n&sup2; &middot; d)), but allows attending to different representation subspaces.</li>
+    <li><strong>Typical config:</strong> h=8, d_model=512 &rarr; d_k = d_v = 64 per head.</li>
+  </ul>
+
+  <h2>Cross-Attention (Encoder-Decoder)</h2>
+  <p>Queries come from the decoder, keys and values from the encoder output. Same mechanism, different source for K and V.</p>
+
+  <h2>Complexity Comparison</h2>
+  <table>
+    <thead>
+      <tr><th>Mechanism</th><th>Time</th><th>Space</th><th>Parallelizable</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Dot-product</td><td>O(n&sup2;d)</td><td>O(n&sup2;)</td><td>Yes</td></tr>
+      <tr><td>Multi-head</td><td>O(n&sup2;d)</td><td>O(n&sup2;)</td><td>Yes</td></tr>
+      <tr><td>Cross-attn</td><td>O(n&middot;m&middot;d)</td><td>O(n&middot;m)</td><td>Yes</td></tr>
+    </tbody>
+  </table>
+  <p>Where n = query length, m = key/value length, d = model dimension.</p>
+
+  <figure>
+    <img src="assets/attention-complexity.png" alt="Complexity scaling chart">
+    <figcaption>Computation scaling vs. sequence length &mdash; see <code>assets/attention-complexity.png</code>.</figcaption>
+  </figure>
+
+  <p>A presentation version is available in <code>slides.md</code>.</p>
+</body>
+</html>

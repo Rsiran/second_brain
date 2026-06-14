@@ -1,9 +1,10 @@
-.PHONY: help lint lint-self lint-example search-index ingest-status test clean
+.PHONY: help lint lint-self lint-example search-index ingest-status okf test clean
 
 help:
 	@echo "make lint          # lint the knowledge base and examples/mini-base"
 	@echo "make ingest-status # show new/modified/orphaned raw files"
 	@echo "make search-index  # build search index over wiki/"
+	@echo "make okf           # export wiki/ as an OKF bundle to out/okf/"
 	@echo "make test          # run pytest + lint"
 	@echo "make clean         # remove generated artifacts"
 
@@ -20,6 +21,9 @@ ingest-status:
 
 search-index:
 	uv run python -m tools.search index --base . --index .search-index/index.json
+
+okf:
+	uv run python -m tools.okf export
 
 test: lint
 	uv run python -m tools.search index --base examples/mini-base --index .search-index/mini.json

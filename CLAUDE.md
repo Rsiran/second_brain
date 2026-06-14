@@ -288,6 +288,7 @@ Run these through `uv run` (e.g. `uv run python -m tools.lint`) or after activat
 | lint | `python -m tools.lint` | Health-checks `wiki/` against the schemas. |
 | render | `python -m tools.render validate <dir>` | Validates an output bundle. `marp <dir>` converts slides to HTML. |
 | fetch-images | `python -m tools.fetch_images <path>` | Downloads remote images in a raw markdown file to local. |
+| okf | `python -m tools.okf export` | Exports `wiki/` as an Open Knowledge Format bundle (`out/okf/`) for OKF tooling. One-way projection; never edits the vault. See `tools/okf/README.md`. |
 | mcp-server | `python -m tools.mcp_server` (stdio) | Read-only MCP server (`kb-mcp`) for Claude, Hermes Agent, and other MCP clients. See `docs/mcp-integration.md`. |
 
 ## 6. Anti-patterns — do not do these

@@ -63,11 +63,16 @@ This repo is generic on purpose. To specialize it:
 | lint | `python -m tools.lint` | Schema + link health check. |
 | render | `python -m tools.render validate <dir>` | Validate / render an output bundle. |
 | fetch-images | `python -m tools.fetch_images <path>` | Localize remote images in a raw markdown file. |
+| okf | `python -m tools.okf export` | Export `wiki/` as an Open Knowledge Format bundle. |
 | mcp-server | `python -m tools.mcp_server` | Read-only MCP server (`kb-mcp`). |
 
 ## MCP integration
 
 The repo ships an MCP server (`kb-mcp`) exposing seven read-only tools — search, article/source reads, index reads, ingest status, lint — to any MCP client (Claude Desktop/Code, Hermes Agent, …). See [docs/mcp-integration.md](./docs/mcp-integration.md) for setup.
+
+## Interoperability — Open Knowledge Format
+
+`make okf` (or `python -m tools.okf export`) projects `wiki/` into an [Open Knowledge Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf) (OKF) bundle in `out/okf/` — Obsidian wikilinks become absolute markdown links, and each directory gets a navigation `index.md`. This makes the vault consumable by OKF tooling (e.g. graph visualizers, Google's Knowledge Catalog) while we keep authoring in Obsidian. The export is one-way and never edits the vault. See [tools/okf/README.md](./tools/okf/README.md).
 
 ## Layout
 
